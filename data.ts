@@ -27,3 +27,21 @@ export const getPokeData = async (URL: string): Promise<PokeAPIResp | null> => {
 		return null;
 	}
 };
+
+export const getOnePokemonFromName = async (
+	name: string
+): Promise<PokeAPIResp | null> => {
+	try {
+		const res = await fetch(`${URL}/${name}`);
+		if (res.ok) {
+			const json = await res.json();
+			return json;
+		} else {
+			console.log(`Error for URL:${URL}, ${res.status}`);
+			return null;
+		}
+	} catch (error: any) {
+		console.log(`Error for URL:${URL}, ${error.message}`);
+		return null;
+	}
+};

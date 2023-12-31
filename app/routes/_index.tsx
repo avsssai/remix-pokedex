@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-import { json, useLoaderData } from "@remix-run/react";
+import { Link, json, useLoaderData } from "@remix-run/react";
 import { getData, getPokeData } from "data";
 import { PokeAPIResp } from "types/PokeApiResponse";
 import { data } from "../../dummyData";
@@ -39,17 +39,23 @@ export default function Index() {
 function PokeCard({ data }: { data: PokeAPIResp }) {
 	return (
 		<div className='relative rounded-lg shadow-md border border-1'>
-			<div className='text-gray-400 text-end px-2 py-1 text-xs font-bold right-0 absolute'>
-				#{data.id.toString().padStart(3, "0")}
-			</div>
-			<div className='relative aspect-square'>
-				<img
-					className='absolute w-full h-full'
-					src={data.sprites.front_default}
-					alt={`picture of pokemon ${data.name}`}
-				/>
-			</div>
-			<h4 className='text-center mt-[-16px] capitalize'>{data.name}</h4>
+			<Link to={`/pokemon/${data.name}`}>
+				<div className='text-gray-400 text-end px-2 py-1 text-xs font-bold right-0 absolute'>
+					#{data.id.toString().padStart(3, "0")}
+				</div>
+				<div className='relative aspect-square'>
+					<img
+						className='absolute w-full h-full p-4'
+						// src={data.sprites.front_default}
+						src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${data.id}.svg`}
+						alt={`picture of pokemon ${data.name}`}
+						loading='lazy'
+					/>
+				</div>
+				<h4 className='text-center mt-[-16px] capitalize'>
+					{data.name}
+				</h4>
+			</Link>
 		</div>
 	);
 }

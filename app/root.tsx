@@ -29,7 +29,7 @@ export default function App() {
 				<Links />
 			</head>
 			<body>
-				<div className='bg-red-500 h-screen flex flex-col gap-2'>
+				<div className='bg-red-500 min-h-screen flex flex-col gap-2'>
 					<header className='px-2 py-4'>
 						<div className='flex '>
 							<div className='relative w-10 min-w-10'>
